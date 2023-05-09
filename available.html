@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Now Showing</h1>
+        <a href="index.html"><button id="home" type="button" class="home button">Home</button></a>
+        <a href="book.html"><button id="book" type="button" class="book button">Book Tickets</button></a>
+    </header>
+    <div class="container">
+
+        <div id="search" class="search search__hidden">
+            <div class="search__content" id="search-content">
+        </div>
+        <button id="clear" type="button" class="search__clear">CLEAR</button>
+        </div>
+
+        <table class="table user-list">
+            <tr class="table user-list" id="movie">
+                <td class="movie">
+                    <div class="movie__all movie__rows">
+                        <img src="" alt="" class="movie__img">
+                        <div class="movie__info">
+                            <span class="title"></span>
+                            <ul class="details">
+                                <li class="details-item"></li>
+                                <li class="details-item"></li>
+                                <li class="details-item"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="movie__tags movie__rows tags">
+                        <span class="tag "></span>
+                        <span class="tag "></span>
+                        <span class="tag "></span>
+                        <span class="tag "></span>
+                        <span class="tag "></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+    <footer class="footer" position="fixed">
+        <p>&copy; Movie Ticket Booking Website. All rights reserved.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+
+
+
+    
+

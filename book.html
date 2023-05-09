@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="movies.js"></script>
+</head>
+
+<body onload="populateMoviesDropdown() , populatetimingsDropdown()" class="body">
+    <header class="header">
+        <h1>Book Tickets</h1>
+        <div id="timer"></div>
+        <a href="index.html"><button id="home" type="button" class="home button">Home</button></a>
+        <a href="available.html"><button id="avail" type="button" class="avail button">Now Showing</button></a>
+    </header>
+    <div class="contains">
+        <h2>Select your movie</h2>
+        <form id="confirmForm">
+            <select id="movies">
+                <option value="">--Select a movie--</option>
+            </select>    
+            <select id="timings" class="timings">
+                <option value="">--Select a time--</option>
+            </select>    
+        <table>
+            <tr>
+                <td class="seat available"><input type="checkbox" id="seat1" name="seat1" value="seat1" >
+                    <label for="seat1">Seat 1</label></td>
+                <td class="seat booked"><input type="checkbox" id="seat2" name="seat2" value="seat2" disabled >
+                    <label for="seat2">Seat 2</label></td>
+                <td class="seat available"><input type="checkbox" id="seat3" name="seat3" value="seat3" >
+                    <label for="seat3">Seat 3</label></td>
+                <td class="seat booked"><input type="checkbox" id="seat4" name="seat4" value="seat4" disabled >
+                    <label for="seat4">Seat 4</label></td>
+                <td class="seat available"><input type="checkbox" id="seat5" name="seat5" value="seat5" >
+                    <label for="seat5">Seat 5</label></td>
+                <td class="seat available"><input type="checkbox" id="seat6" name="seat6" value="seat6" >
+                    <label for="seat6">Seat 6</label></td>
+            </tr>
+            <tr>
+                <td class="seat booked"><input type="checkbox" id="seat7" name="seat7" value="seat7" disabled>
+                    <label for="seat7">Seat 7</label></td>
+                <td class="seat available"><input type="checkbox" id="seat8" name="seat8" value="seat8" >
+                    <label for="seat8">Seat 8</label></td>
+                <td class="seat booked"><input type="checkbox" id="seat9" name="seat9" value="seat9" disabled>
+                    <label for="seat9">Seat 9</label></td>
+                <td class="seat available"><input type="checkbox" id="seat10" name="seat10" value="seat10" >
+                    <label for="seat10">Seat 10</label></td>
+                <td class="seat available"><input type="checkbox" id="seat11" name="seat11" value="seat11" >
+                    <label for="seat11">Seat 11</label></td>
+                <td class="seat booked"><input type="checkbox" id="seat12" name="seat12" value="seat12" disabled >
+                    <label for="seat12">Seat 12</label></td>
+            </tr>
+            <tr>
+                <td class="seat booked"><input type="checkbox" id="seat13" name="seat13" value="seat13" disabled>
+                    <label for="seat13">Seat 13</label></td>
+                <td class="seat available"><input type="checkbox" id="seat14" name="seat14" value="seat14">
+                    <label for="seat14">Seat 14</label></td>
+                <td class="booked"><input type="checkbox" id="seat15" name="seat15" value="seat15" disabled>
+                    <label for="seat15">Seat 15</label></td>
+                <td class="seat available"><input type="checkbox" id="seat16" name="seat16" value="seat16">
+                    <label for="seat16">Seat 16</label></td>
+                <td class="seat available"><input type="checkbox" id="seat17" name="seat17" value="seat17">
+                    <label for="seat17">Seat 17</label></td>
+                <td class="seat booked"><input type="checkbox" id="seat18" name="seat18" value="seat18" disabled >
+                    <label for="seat18">Seat 18</label></td>
+            </tr>
+            <tr>
+                <td class="blue square">Booked</td>
+                <td class="green square">Available</td>
+                <td class="yellow square">Selected</td>
+            </tr>
+        </table>
+        <a href=""><button type="submit" id="submitButton" class="booking button">Book</button></a>
+        <div id="errorMessage" class="error-message" style="display:none">Please select at least one seat before submitting the form.</div>
+     </form>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; Movie Ticket Booking Website. All rights reserved.</p>
+    </footer>
+    <p class="para">Total Seats Booked: <span id="totalSeats">0</span></p>
+    <p class="para">Total Price: <span id="totalPrice">0</span></p>
+    <script>
+        const seats = document.querySelectorAll('.seat');
+        const totalSeats = document.getElementById('totalSeats');
+        const totalPrice = document.getElementById('totalPrice');
+        const bookingForm = document.getElementById('confirmForm');
+        const submitButton = document.getElementById('submitButton');
+        const errorMessage = document.getElementById('errorMessage');
+  
+        let selectedSeats = [];
+        let price = 0;
+  
+        seats.forEach(seat => {
+          seat.addEventListener('click', () => {
+            if (!selectedSeats.includes(seat)) {
+              seat.classList.add('selected');
+              selectedSeats.push(seat);
+              price += 100;
+            } else {
+              seat.classList.remove('selected');
+              selectedSeats = selectedSeats.filter(s => s !== seat);
+              price -= 100;
+            }
+  
+            totalSeats.innerText = selectedSeats.length;
+            totalPrice.innerText = price;
+          });
+        });
+
+        confirmForm.addEventListener('submit', event => {
+        if (selectedSeats.length === 0) {
+          event.preventDefault();
+          errorMessage.style.display = 'block';
+        } else {
+          errorMessage.style.display = 'none';
+          alert('Congratulations! Your Movie is Booked');
+        }
+
+
+        const timerElement = document.getElementById('timer');
+        const nextShowDate = new Date('2023-05-10T19:30:00Z');
+        function updateTimer() {
+            const now = new Date();
+            const timeRemaining = nextShowDate - now;
+            if (timeRemaining <= 0) {
+                    timerElement.textContent = 'The show has started!';
+                    clearInterval(timerInterval);
+            } else {
+                    const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60));
+                    const minutesRemaining = Math.floor((timeRemaining / (1000 * 60)) % 60);
+                    const secondsRemaining = Math.floor((timeRemaining / 1000) % 60);
+                    timerElement.textContent = `Time until next show: ${hoursRemaining} hours, ${minutesRemaining} minutes, ${secondsRemaining} seconds`;
+            }
+            }
+            updateTimer();
+            const timerInterval = setInterval(updateTimer, 1000);
+      });
+      </script>
+</body>
+</html>

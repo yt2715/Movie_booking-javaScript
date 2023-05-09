@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Movie Ticket Booking - Sign Up Page</h1>
+    </header>
+    <div class="box">
+        <form method="post" action="index.html">
+            <label for="reg-id">Registration ID*</label><br>
+            <input type="text" id="reg-id" name="reg-id" class="boxes" placeholder="Enter your registration ID" required>
+            <br>
+            <label for="username">Username*</label><br>
+            <input type="text" id="username" name="username" class="boxes" placeholder="Enter your username " pattern="[A-Za-z]+" required>
+            <br>
+            <label for="password">Password*</label><br>
+            <input type="password" id="password" name="password" class="boxes" placeholder="Enter your password " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" required>
+            <br>
+            <label for="email">Email*</label><br>
+            <input type="email" id="email" name="email" class="boxes" placeholder="Enter your email" required>
+            <br>
+            <label for="mobile">Mobile Number*</label><br>
+            <input type="tel" id="mobile" name="mobile" class="boxes" placeholder="Enter your mobile number " pattern="[0-9]{10}" required>
+            <br>
+            <label for="dob">Date of Birth*</label><br>
+            <input type="date" id="dob" name="dob" class="boxes" placeholder="Enter your date of birth" required>
+            <br>
+            <input type="submit" value="Sign Up" class="button">
+            <input type="reset" value="Reset" class="button">
+        </form>
+    </div>
+    <footer class="footer">
+        <p>&copy; Movie Ticket Booking Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
